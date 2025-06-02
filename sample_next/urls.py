@@ -15,12 +15,35 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path
 
 from web_app import views
 
+
+def root_redirect(request):
+    """
+    ルートパス（/）にアクセスした際の処理
+    認証済みユーザーはホームページへ、未認証ユーザーはログインページへリダイレクト
+    """
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        return redirect('login')
+
+
 urlpatterns = [
+    # 管理画面
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
+
+    # ルートパス - 自動リダイレクト機能
+    path('', root_redirect, name='root'),
+
+    # ログイン関連
+    path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
+
+    # メインページ（ログイン必須）
+    path('home/', views.home, name='home'),
     path('about/', views.about, name='about'),
 ]

@@ -10,7 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+# .envファイルから環境変数を読み込む
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +26,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!j+8kub#f6afe23e0fc6yka*qq9pb#cv(x7sf5z_obrhfxrra^'
+# 環境変数からSECRET_KEYを読み込み（デフォルト値は開発用）
+SECRET_KEY = os.getenv(
+    'SECRET_KEY', 'django-insecure-!j+8kub#f6afe23e0fc6yka*qq9pb#cv(x7sf5z_obrhfxrra^')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# 環境変数からDEBUG設定を読み込み
+DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = []
+# 環境変数からALLOWED_HOSTSを読み込み
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -77,7 +87,7 @@ WSGI_APPLICATION = 'sample_next.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / os.getenv('DB_NAME', 'db.sqlite3'),
     }
 }
 
@@ -122,3 +132,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ログイン関連の設定
+# ログインが必要なページにアクセスした際のリダイレクト先
+LOGIN_URL = '/login/'
+
+# ログイン成功後のデフォルトリダイレクト先
+LOGIN_REDIRECT_URL = '/home/'
+
+# ログアウト後のリダイレクト先
+LOGOUT_REDIRECT_URL = '/login/'
