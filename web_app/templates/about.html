@@ -1,0 +1,23 @@
+<!-- web_app/templates/about.html -->
+<!DOCTYPE html>
+<!-- Djangoの静的ファイル読み込み機能を使用 -->
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Webアプリ 概要</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 外部CSSファイルの読み込み -->
+    <link rel="stylesheet" type="text/css" href="{% static 'about.css' %}">
+  </head>
+<body>
+  <div class="container">
+    <h1>概要</h1>
+    <p>これはサンプルWebアプリの概要ページです。</p>
+    <a href="{% url 'index' %}" class="btn">ホームへ戻る</a>
+  </div>
+  <footer>
+    &copy; 2025 Webアプリ Sample
+  </footer>
+</body>
+</html>

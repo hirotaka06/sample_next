@@ -1,0 +1,60 @@
+/* home.cssファイル - ホームページ用のスタイル */
+
+/* ベース（基本）のスタイル設定 */
+body {
+  font-family: 'Segoe UI', 'ヒラギノ角ゴ ProN', 'Meiryo', sans-serif;
+  background: linear-gradient(120deg, #f0f4f8 0%, #c2e9fb 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* メインコンテナ（内容を囲む箱）のスタイル */
+.container {
+  max-width: 600px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 40px 32px;
+  text-align: center;
+}
+
+/* メインタイトル（h1）のスタイル */
+h1 {
+  color: #3498db;
+  margin-bottom: 16px;
+  font-size: 2.5rem;
+}
+
+/* 段落（p）のスタイル */
+p {
+  color: #555;
+  font-size: 1.2rem;
+  margin-bottom: 32px;
+}
+
+/* ボタンのスタイル */
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: #3498db;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+/* ボタンにマウスを重ねた時の効果 */
+.btn:hover {
+  background: #217dbb;
+}
+
+/* フッター（下部）のスタイル */
+footer {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
